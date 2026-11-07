@@ -164,4 +164,6 @@ The records in `past_investments.json` and `past_code_bugs.json` are sample data
     
     Aarush:
     https://dev.to/arcturuss8170/i-stopped-treating-agent-memory-like-prompt-history-2h38
+    https://lnkd.in/p/g9cD_JPM
+       https://www.reddit.com/r/SideProject/comments/1xq9r79/can_an_ai_agent_actually_benefit_from_experience/
   
