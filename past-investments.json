@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "1.0",
+  "currency": "INR",
+  "investments": [
+    {
+      "id": "inv-001",
+      "asset": "Example Tech Ltd",
+      "ticker": "EXTECH",
+      "assetClass": "equity",
+      "sector": "Technology",
+      "entry": {
+        "date": "2023-02-10",
+        "price": 1200,
+        "quantity": 50
+      },
+      "thesis": {
+        "summary": "Cloud revenue growing 30% YoY with expanding operating margins.",
+        "keyAssumptions": [
+          "Cloud revenue keeps growing above 25% YoY",
+          "Operating margin expands by at least 2 points",
+          "No major regulatory action"
+        ],
+        "catalysts": [
+          "Q3 earnings",
+          "New enterprise contracts"
+        ],
+        "risks": [
+          "Valuation compression",
+          "Client concentration"
+        ],
+        "targetPrice": 1800,
+        "stopLoss": 1000,
+        "timeHorizonMonths": 24,
+        "confidence": 7
+      },
+      "exit": {
+        "date": "2024-11-05",
+        "price": 1650,
+        "reason": "Partial target reached; margin growth slowed"
+      },
+      "outcome": {
+        "returnPct": 37.5,
+        "result": "win",
+        "assumptionsHeld": [
+          true,
+          false,
+          true
+        ]
+      },
+      "lessons": [
+        "Margin assumption was too optimistic",
+        "Position sizing was appropriate"
+      ],
+      "tags": [
+        "growth",
+        "tech",
+        "earnings-driven"
+      ]
+    },
+    {
+      "id": "inv-002",
+      "asset": "Example Energy Corp",
+      "ticker": "EXENGY",
+      "assetClass": "equity",
+      "sector": "Energy",
+      "entry": {
+        "date": "2023-06-01",
+        "price": 340,
+        "quantity": 200
+      },
+      "thesis": {
+        "summary": "Undervalued vs peers with a strong dividend yield.",
+        "keyAssumptions": [
+          "Oil prices stay above 70 USD",
+          "Dividend is maintained",
+          "Debt reduces by 15%"
+        ],
+        "catalysts": [
+          "Dividend announcement"
+        ],
+        "risks": [
+          "Commodity price drop",
+          "Policy changes"
+        ],
+        "targetPrice": 450,
+        "stopLoss": 300,
+        "timeHorizonMonths": 18,
+        "confidence": 6
+      },
+      "exit": {
+        "date": "2023-12-12",
+        "price": 295,
+        "reason": "Stop loss triggered after oil price fell"
+      },
+      "outcome": {
+        "returnPct": -13.2,
+        "result": "loss",
+        "assumptionsHeld": [
+          false,
+          true,
+          false
+        ]
+      },
+      "lessons": [
+        "Underestimated commodity exposure",
+        "Stop loss limited the damage"
+      ],
+      "tags": [
+        "value",
+        "dividend",
+        "commodity"
+      ]
+    },
+    {
+      "id": "inv-003",
+      "asset": "Example Index Fund",
+      "ticker": "EXIDX",
+      "assetClass": "etf",
+      "sector": "Broad Market",
+      "entry": {
+        "date": "2022-09-15",
+        "price": 210,
+        "quantity": 100
+      },
+      "thesis": {
+        "summary": "Long-term compounding via low-cost diversified exposure.",
+        "keyAssumptions": [
+          "Market returns average 10% per year over the long run",
+          "Expense ratio stays under 0.2%"
+        ],
+        "catalysts": [],
+        "risks": [
+          "Market-wide drawdown"
+        ],
+        "targetPrice": null,
+        "stopLoss": null,
+        "timeHorizonMonths": 120,
+        "confidence": 8
+      },
+      "exit": null,
+      "outcome": {
+        "returnPct": null,
+        "result": "open",
+        "assumptionsHeld": []
+      },
+      "lessons": [],
+      "tags": [
+        "passive",
+        "long-term"
+      ]
+    },
+    {
+      "id": "inv-101",
+      "asset": "Example Pay Labs",
+      "ticker": "PRIVATE",
+      "assetClass": "startup equity",
+      "sector": "FinTech / Payments",
+      "entry": {
+        "date": "2022-03-01",
+        "price": 1,
+        "quantity": 500000
+      },
+      "thesis": {
+        "summary": "B2C peer-to-peer payments app growing 20% month over month with no revenue model yet.",
+        "keyAssumptions": [
+          "Growth continues without paid marketing",
+          "Interchange fees will cover costs at scale",
+          "Solo technical founder can ship fast enough"
+        ],
+        "risks": [
+          "No monetization",
+          "Heavy regulation",
+          "Single founder"
+        ],
+        "targetPrice": 10,
+        "stopLoss": null,
+        "timeHorizonMonths": 36,
+        "confidence": 7
+      },
+      "exit": {
+        "date": "2023-09-15",
+        "price": 0,
+        "reason": "Shut down after failing to monetize and running out of cash"
+      },
+      "outcome": {
+        "returnPct": -100,
+        "result": "loss",
+        "assumptionsHeld": [
+          false,
+          false,
+          false
+        ]
+      },
+      "financialLoss": "INR 5,00,000 fully written off",
+      "lessons": [
+        "Growth without a revenue model is not traction",
+        "Solo founder with no compliance owner was a red flag"
+      ],
+      "tags": [
+        "fintech",
+        "payments",
+        "no-revenue",
+        "solo-founder"
+      ]
+    },
+    {
+      "id": "inv-102",
+      "asset": "Example Lend Co",
+      "ticker": "PRIVATE",
+      "assetClass": "startup equity",
+      "sector": "FinTech / Lending",
+      "entry": {
+        "date": "2021-07-10",
+        "price": 2,
+        "quantity": 300000
+      },
+      "thesis": {
+        "summary": "Instant micro-loans using alternative credit scoring, partnered with an unlicensed third party.",
+        "keyAssumptions": [
+          "Regulatory licence can be obtained later",
+          "Default rate stays under 5%",
+          "Collections can be automated"
+        ],
+        "risks": [
+          "Licensing",
+          "Credit risk",
+          "Data privacy"
+        ],
+        "targetPrice": 8,
+        "stopLoss": null,
+        "timeHorizonMonths": 30,
+        "confidence": 6
+      },
+      "exit": {
+        "date": "2022-11-20",
+        "price": 0.4,
+        "reason": "Operations halted by regulator; defaults hit 18%"
+      },
+      "outcome": {
+        "returnPct": -80,
+        "result": "loss",
+        "assumptionsHeld": [
+          false,
+          false,
+          false
+        ]
+      },
+      "financialLoss": "INR 4,80,000 lost (80% of capital)",
+      "lessons": [
+        "Never invest before the licence is secured",
+        "Alternative scoring models were untested in a downturn"
+      ],
+      "tags": [
+        "fintech",
+        "lending",
+        "regulatory",
+        "credit-risk"
+      ]
+    },
+    {
+      "id": "inv-103",
+      "asset": "Example Ship Fast",
+      "ticker": "PRIVATE",
+      "assetClass": "startup equity",
+      "sector": "Logistics SaaS",
+      "entry": {
+        "date": "2020-10-05",
+        "price": 1.5,
+        "quantity": 400000
+      },
+      "thesis": {
+        "summary": "B2B route-optimisation SaaS with paying pilot customers and a two-founder team with prior exits.",
+        "keyAssumptions": [
+          "Pilots convert to annual contracts",
+          "Net revenue retention above 110%",
+          "Founders hire a sales lead within a year"
+        ],
+        "risks": [
+          "Customer concentration",
+          "Long enterprise sales cycle"
+        ],
+        "targetPrice": 6,
+        "stopLoss": null,
+        "timeHorizonMonths": 48,
+        "confidence": 8
+      },
+      "exit": {
+        "date": "2024-06-30",
+        "price": 5.1,
+        "reason": "Acquired by a larger logistics platform"
+      },
+      "outcome": {
+        "returnPct": 240,
+        "result": "win",
+        "assumptionsHeld": [
+          true,
+          true,
+          true
+        ]
+      },
+      "financialLoss": null,
+      "lessons": [
+        "Paying customers before the raise was the strongest signal",
+        "Founders with prior exits executed faster"
+      ],
+      "tags": [
+        "b2b",
+        "saas",
+        "paying-customers",
+        "experienced-team"
+      ]
+    },
+    {
+      "id": "inv-104",
+      "asset": "Example Crypto Wallet",
+      "ticker": "PRIVATE",
+      "assetClass": "startup equity",
+      "sector": "FinTech / Crypto",
+      "entry": {
+        "date": "2021-11-01",
+        "price": 3,
+        "quantity": 200000
+      },
+      "thesis": {
+        "summary": "Self-custody crypto wallet with in-app swaps; revenue depends on trading volume.",
+        "keyAssumptions": [
+          "Trading volume stays at bull-market levels",
+          "Security audit is completed before launch",
+          "Exchange partnerships stay open"
+        ],
+        "risks": [
+          "Market cycle",
+          "Security breach",
+          "Regulation"
+        ],
+        "targetPrice": 12,
+        "stopLoss": null,
+        "timeHorizonMonths": 24,
+        "confidence": 6
+      },
+      "exit": {
+        "date": "2022-08-12",
+        "price": 0.6,
+        "reason": "Volumes collapsed; a smart-contract bug drained user funds"
+      },
+      "outcome": {
+        "returnPct": -80,
+        "result": "loss",
+        "assumptionsHeld": [
+          false,
+          false,
+          true
+        ]
+      },
+      "financialLoss": "INR 4,80,000 lost; user funds drained by an unaudited contract",
+      "lessons": [
+        "Revenue tied to market cycles is fragile",
+        "Security audit must happen before launch, not after"
+      ],
+      "tags": [
+        "fintech",
+        "crypto",
+        "security",
+        "market-cycle"
+      ]
+    }
+  ]
+}

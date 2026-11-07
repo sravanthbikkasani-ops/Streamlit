@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "note": "Entries marked 'reported' reference public incidents; verify figures before citing. Others are illustrative.",
+  "bugs": [
+    {
+      "id": "bug-001",
+      "title": "SQL injection in login query",
+      "category": "Security",
+      "language": "python",
+      "vulnerableCode": "query = \"SELECT * FROM users WHERE username='\" + username + \"' AND password='\" + password + \"'\"\nresult = db.execute(query)",
+      "fixedCode": "query = \"SELECT id, password_hash FROM users WHERE username = %s\"\nrow = db.execute(query, (username,)).fetchone()\nif row and verify_password(password, row['password_hash']):\n    ...",
+      "impact": "Authentication bypass and full database read access",
+      "historicalLoss": "Reported: Heartland Payment Systems (2008) breach via SQL injection exposed around 130 million card numbers",
+      "lesson": "Always use parameterized queries and hash passwords; never concatenate user input into SQL."
+    },
+    {
+      "id": "bug-002",
+      "title": "Floating-point arithmetic on money",
+      "category": "Logic",
+      "language": "python",
+      "vulnerableCode": "total = 0.1 + 0.2\nbalance = balance - amount * 1.18",
+      "fixedCode": "from decimal import Decimal, ROUND_HALF_UP\ntotal = Decimal('0.1') + Decimal('0.2')\nbalance = balance - (Decimal(amount) * Decimal('1.18')).quantize(Decimal('0.01'), ROUND_HALF_UP)",
+      "impact": "Rounding drift accumulates in ledgers and breaks reconciliation",
+      "historicalLoss": "Illustrative: small per-transaction rounding errors compound into unreconciled balances at scale",
+      "lesson": "Use Decimal or integer minor units (paise/cents) for all currency values."
+    },
+    {
+      "id": "bug-003",
+      "title": "Missing idempotency key on payment requests",
+      "category": "Concurrency",
+      "language": "python",
+      "vulnerableCode": "def charge(user, amount):\n    return gateway.create_charge(user, amount)",
+      "fixedCode": "def charge(user, amount, idempotency_key):\n    if store.exists(idempotency_key):\n        return store.get(idempotency_key)\n    result = gateway.create_charge(user, amount, idempotency_key=idempotency_key)\n    store.set(idempotency_key, result)\n    return result",
+      "impact": "Retries and double-clicks cause duplicate charges",
+      "historicalLoss": "Illustrative: duplicate charges lead to refunds, chargeback fees and customer churn",
+      "lesson": "Require an idempotency key for every money-moving request."
+    },
+    {
+      "id": "bug-004",
+      "title": "Hardcoded API secret in source code",
+      "category": "Security",
+      "language": "python",
+      "vulnerableCode": "API_KEY = 'sk_live_51H8...'\nrequests.post(url, headers={'Authorization': API_KEY})",
+      "fixedCode": "import os\nAPI_KEY = os.environ['PAYMENT_API_KEY']\nrequests.post(url, headers={'Authorization': f'Bearer {API_KEY}'})",
+      "impact": "Leaked keys in git history allow attackers to move funds or read data",
+      "historicalLoss": "Illustrative: leaked live keys lead to fraudulent transactions and forced key rotation",
+      "lesson": "Load secrets from environment or a secrets manager and rotate any key that was ever committed."
+    },
+    {
+      "id": "bug-005",
+      "title": "Race condition in balance check (double spend)",
+      "category": "Concurrency",
+      "language": "python",
+      "vulnerableCode": "if account.balance >= amount:\n    account.balance -= amount\n    account.save()",
+      "fixedCode": "with transaction.atomic():\n    acct = Account.objects.select_for_update().get(id=account.id)\n    if acct.balance < amount:\n        raise InsufficientFunds()\n    acct.balance -= amount\n    acct.save()",
+      "impact": "Parallel requests can spend the same balance twice",
+      "historicalLoss": "Illustrative: attackers fire many parallel withdrawals to overdraw an account",
+      "lesson": "Lock the row and check-and-update inside one database transaction."
+    },
+    {
+      "id": "bug-006",
+      "title": "Server-side request forgery reaching cloud metadata",
+      "category": "Security",
+      "language": "python",
+      "vulnerableCode": "url = request.args['url']\nreturn requests.get(url).text",
+      "fixedCode": "from urllib.parse import urlparse\nALLOWED = {'api.partner.com'}\nhost = urlparse(request.args['url']).hostname\nif host not in ALLOWED:\n    abort(400)\nreturn requests.get(f'https://{host}/data', timeout=5).text",
+      "impact": "Attacker makes the server fetch internal URLs and steal cloud credentials",
+      "historicalLoss": "Reported: Capital One (2019) breach via SSRF led to an 80 million USD penalty from the OCC in 2020",
+      "lesson": "Allowlist outbound hosts and block access to internal and metadata addresses."
+    },
+    {
+      "id": "bug-007",
+      "title": "Unsafe deployment leaving old code active",
+      "category": "Operations",
+      "language": "general",
+      "vulnerableCode": "# Deploy script copies new build to 7 of 8 servers; old trading flag logic stays on the 8th",
+      "fixedCode": "# Automated deploy to all nodes with verification step; remove dead feature flags; add kill switch and position limits",
+      "impact": "Obsolete logic runs in production and sends unintended orders",
+      "historicalLoss": "Reported: Knight Capital (2012) lost roughly 440 million USD in about 45 minutes after a faulty deployment",
+      "lesson": "Automate and verify deployments, delete dead code, and add circuit breakers."
+    },
+    {
+      "id": "bug-008",
+      "title": "Unhandled division by zero crashes settlement service when no transactions arrive",
+      "category": "Reliability",
+      "language": "python",
+      "vulnerableCode": "def average_ticket(total, count):\n    return total / count",
+      "fixedCode": "def average_ticket(total, count):\n    if count == 0:\n        return 0.0\n    return total / count",
+      "impact": "ZeroDivisionError crashes the service overnight when traffic is zero, so morning settlements are skipped",
+      "historicalLoss": "Illustrative: a nightly crash delays settlements until someone restarts the service in the morning",
+      "lesson": "Guard divisions against empty inputs and return a safe default instead of raising."
+    }
+  ]
+}
