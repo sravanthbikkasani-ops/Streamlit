@@ -145,7 +145,7 @@ The records in `past_investments.json` and `past_code_bugs.json` are sample data
 ## Hackathon Submission Links
 
 *   **Read the full story on Dev.to:** https://dev.to/sravanth_bikkasani_bc8b62
-*   **Watch the Demo Video:** 
+*   **Watch the Demo Video:** https://youtu.be/lwwv5VxA1BQ
 *   **Social Post:** https://x.com/Sravanth2008
 *   **Reddit:**https://www.reddit.com/user/Sravanthbikkasani/
 
