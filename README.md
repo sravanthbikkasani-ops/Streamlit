@@ -158,7 +158,6 @@ The records in `past_investments.json` and `past_code_bugs.json` are sample data
     
     Sumedha:
     https://www.linkedin.com/feed/update/urn:li:activity:7524833597292388352/
-    https://www.reddit.com/r/SideProject/comments/1xq9r79/can_an_ai_agent_actually_benefit_from_experience/
     https://dev.to/sumedha_ghosh_302008/your-ai-agent-is-making-up-its-past-heres-how-we-caught-it-5bem
     https://www.reddit.com/r/LLMDevs/comments/1xq6zw5/your_ai_agent_is_making_up_its_past_heres_how_we/
     
